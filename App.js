@@ -49,7 +49,7 @@ export default function App() {
   const textColor = isDark ? '#fff' : '#000';
   const subTextColor = isDark ? '#b2bec3' : '#636e72';
   const btnBgColor = isDark ? '#353b48' : '#dcdde1';
-  const operatorColor = '#00cec9';
+  const operatorColor = '#f39c12'; // CAM
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: bgColor }]}>
@@ -102,13 +102,19 @@ export default function App() {
           {/* Right Column */}
           <View style={styles.buttonRight}>
             {buttonsRight.map((op) => (
-              <TouchableOpacity
-                key={op}
-                style={[styles.button, { backgroundColor: operatorColor }]}
-                onPress={() => onButtonPress(op)}
-              >
-                <Text style={[styles.buttonText, { color: '#fff' }]}>{op}</Text>
-              </TouchableOpacity>
+              <View key={op} style={styles.operatorButtonWrapper}>
+                <TouchableOpacity
+                  style={[
+                    styles.operatorButton,
+                    { backgroundColor: operatorColor },
+                  ]}
+                  onPress={() => onButtonPress(op)}
+                >
+                  <Text style={[styles.buttonText, { color: '#fff' }]}>
+                    {op}
+                  </Text>
+                </TouchableOpacity>
+              </View>
             ))}
             <TouchableOpacity onPress={() => setHistoryText('')}>
               <Entypo
@@ -158,12 +164,6 @@ const styles = StyleSheet.create({
     flex: 3,
     padding: 10,
   },
-  buttonRight: {
-    flex: 1,
-    padding: 10,
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
   buttonRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -179,5 +179,23 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 20,
     fontWeight: 'bold',
+  },
+  buttonRight: {
+    flex: 1,
+    paddingVertical: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  operatorButtonWrapper: {
+    width: '100%',
+    alignItems: 'center',
+    marginBottom: 12,
+  },
+  operatorButton: {
+    width: 60,
+    height: 60,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
